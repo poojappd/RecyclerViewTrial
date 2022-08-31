@@ -1,6 +1,8 @@
 package com.example.recyclerviewtrial
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,13 +30,14 @@ class RVAdapter(val dataSet: MutableList<Person>?, val context: Context) : Recyc
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.layout_person_row_item, parent, false)
+        Log.e(TAG, "oncreateviewHolder called")
         return PersonViewHolder(view)
 
     }
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         val person = dataSet?.get(position)
-
+        Log.e(TAG, "onBind ----------- $position")
         holder.textViewName.setText(person?.name)
         holder.textViewLastName.setText(person?.lastName)
         holder.textViewNationality.setText(person?.nationality)
@@ -45,4 +48,5 @@ class RVAdapter(val dataSet: MutableList<Person>?, val context: Context) : Recyc
     override fun getItemCount(): Int{
         return dataSet!!.size
     }
+
 }
